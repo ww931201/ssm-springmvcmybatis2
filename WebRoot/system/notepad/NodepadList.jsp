@@ -132,14 +132,14 @@ function onView(rowid){
 //修改	
 function onEdit(rowid){
 	top.Dialog.open({
-		URL:"<%=basePath%>/preUpdateUser.action?userinfor.userId=" + rowid,
-		Title:"修改记事本",Width:500,Height:350});
+		URL:"<%=basePath%>toUpdateNodepad.action?id="+rowid ,
+		Title:"修改记事本",Width:800,Height:800});
 }
 //删除	
 function onDelete(rowid,rowidx){
 	top.Dialog.confirm("确定要删除该记录吗？",function(){
 	  	//删除记录
-	  	$.post("<%=basePath%>/deleteUser.action",
+	  	$.post("<%=basePath%>/deleteNodepad.action",
 	  			{"ids":rowid},
 	  			function(result){
 	  				handleResult(result.status);

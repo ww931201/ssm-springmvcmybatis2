@@ -23,4 +23,8 @@
 		</where>
 	</select>
 	
+	<delete id="deleteNodepad" parameterType="int">
+	 	delete from t_nodepad where id=#{ids}
+	</delete>
+	
 </mapper>

@@ -45,4 +45,11 @@ public class NodepadServiceImpl implements NodepadService{
 		return nodepadDao.selectNodepadById(nodeid);
 	}
 
+	@Override
+	public void deleteNodepad(int ids) {
+		nodepadDao.deleteNodepad(ids);
+		// TODO Auto-generated method stub
+		
+	}
+
 }

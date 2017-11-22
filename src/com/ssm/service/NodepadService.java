@@ -13,6 +13,8 @@ public interface NodepadService {
 
 	void saveNodepad(Notepad notepad);
 
-	Notepad selectNodepadById(int nodeid); 
+	Notepad selectNodepadById(int nodeid);
+
+	void deleteNodepad(int ids); 
 
 }

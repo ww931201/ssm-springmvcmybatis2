@@ -15,6 +15,8 @@ public interface NodepadDao {
  
 	void saveNodepad(Notepad notepad);
 
-	Notepad selectNodepadById(int id);  
+	Notepad selectNodepadById(int id);
+
+	void deleteNodepad(int ids);  
 
 }

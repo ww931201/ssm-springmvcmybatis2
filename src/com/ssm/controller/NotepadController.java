@@ -70,16 +70,21 @@ public class NotepadController extends PageController{
 	 */
 	
 	@RequestMapping("/saveNodepad")
+	@ResponseBody
 	public Map<String, Object> saveNodepad(Notepad notepad) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		nodepadService.saveNodepad(notepad);
-		
+		try {
+			nodepadService.saveNodepad(notepad);
+			map.put("message", "保存成功！");
+		} catch (Exception e) {
+			map.put("content", "保存失败！");
+		}
 		return map;
 	}
 	
 	@RequestMapping("/toShowNodepad")
+	
 	public String toShowNodepad(HttpServletRequest request) {
 		
 		String parameter = request.getParameter("id");
@@ -87,5 +92,25 @@ public class NotepadController extends PageController{
 		Notepad notepad = nodepadService.selectNodepadById(nodeid);
 		request.setAttribute("notepad", notepad);
 		return "notepad/showNodepad";
+	}
+	
+	@RequestMapping("/toUpdateNodepad")
+	public String toUpdateNodepad(HttpServletRequest request,int id ) {
+		String parameter = request.getParameter("id");
+		int nodeid = Integer.parseInt(parameter); 
+		Notepad notepad = nodepadService.selectNodepadById(nodeid);
+		request.setAttribute("notepad", notepad);
+		return "notepad/addNodepad";
+	}
+	@RequestMapping("/deleteNodepad")
+	public Map<String, Object> deleteNodepad(int ids){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			nodepadService.deleteNodepad(ids);
+			map.put("status", 1);
+		} catch (Exception e) {
+			map.put("status", 0);
+		}
+		return map;
 	}
 }

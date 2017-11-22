@@ -75,33 +75,33 @@
 	<table class="tableStyle" formMode="transparent">
 		<input type="hidden" name="" value="" />
 		<tr>
-			<td width="100">标题：</td>
+			<td width="100">标题：</td> 
 			<td>
-			<input type="text" name="headlined" value="" class="" watermark=""/>
+			<input type="text" name="headlined" value="${notepad.headlined}" class="" watermark=""/>
 			</td>
 		</tr>
 		<tr>
 			<td width="100">分类：</td>
 			<td>
-			<input type="text" name="classifies" value="" class="" watermark=""/>
+			<input type="text" name="classifies" value="${notepad.classifies}" class="" watermark=""/>
 			</td>
 		</tr>
 		<tr>
 			<td width="100">游玩时间：</td>
 			<td>
-			<input type="text" name="playtime" class="date" style="width:200px;" dateFmt="yyyy-MM-dd HH:mm:ss" class="validate[required]"/><span class="star">*</span></td>
+			<input type="text" name="playtime"  value="${notepad.playtime}" class="date" style="width:200px;" dateFmt="yyyy-MM-dd HH:mm:ss" class="validate[required]"/><span class="star">*</span></td>
 			</td>
 		</tr>
 		<tr>
 			<td width="100">地点：</td>
 			<td>
-			<input type="text" name="sitename" value="" class="" watermark=""/>
+			<input type="text" name="sitename" value="${notepad.sitename}" class="" watermark=""/>
 			</td>
 		</tr>
 		<tr>
 			<td width="100">作者：</td>
 			<td>
-			<input type="text" name="author" value="" class="" watermark=""/>
+			<input type="text" name="author" value="${notepad.author}" class="" watermark=""/>
 			</td>
 		</tr>
 		<tr>
@@ -109,6 +109,7 @@
 			<td>
 				  <!-- 加载编辑器的容器 -->
 			    <script id="container" name="content" type="text/plain">
+					${notepad.content}
    				 </script>
 			</td>
 		</tr>
@@ -128,6 +129,7 @@ function submitHandler() {
 	var valid = $('#myFormId').validationEngine({returnIsValid: true});
 	if(valid){
 		$.post("<%=basePath%>saveNodepad.action", $('#myFormId').serializeArray(), function(data) {
+			console.log(data);
 			top.Dialog.alert(data.message, function(){
             	if(!data.content){		            		
 	            	closeWin();
@@ -155,7 +157,8 @@ function closeWin(){
 		update = false;
 	}
 	//刷新数据
-	top.frmright.refresh(update);
+	//top.frmright.refresh(update);
+	top.frmright.document.getElementsByTagName("iframe")[1].contentWindow.refresh(update);
 	//关闭窗口
 	top.Dialog.close();
 }
