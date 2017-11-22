@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- Mapper接口开发 -->
+
+<mapper namespace="com.ssm.mapper.UserDao">
+	<!-- 登录验证用户名密码查询 -->
+	<!-- 不使用别名 -->
+	<select id="findUser" parameterType="com.ssm.po.User" resultType="com.ssm.po.User">
+		select * from t_user where username = #{username} and password = #{password}
+	</select>
+</mapper> 

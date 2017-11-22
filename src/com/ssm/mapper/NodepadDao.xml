@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- Mapper接口开发 -->
+<mapper namespace="com.ssm.mapper.NodepadDao">
+	<select id="selectNotepadList" parameterType="com.ssm.po.Notepad" resultType="com.ssm.po.Notepad">
+		select * from t_nodepad
+		
+		limit #{page.pageNo},#{page.pagesize}
+	</select>
+	
+	<select id="selectCountTotal" resultType="int">
+		select count(id) from t_nodepad
+	</select>
+	
+	<insert id="saveNodepad" parameterType="com.ssm.po.Notepad">
+		insert into t_nodepad(headlined,classifies,playtime,sitename,author,content)values(#{headlined},#{classifies},#{playtime},#{sitename},#{author},#{content})
+	</insert>
+	
+	<select id="selectNodepadById" parameterType="int" resultType="com.ssm.po.Notepad">
+		select * from t_nodepad
+		<where>
+			id=#{id}
+		</where>
+	</select>
+	
+</mapper>
